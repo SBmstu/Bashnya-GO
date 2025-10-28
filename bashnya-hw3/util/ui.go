@@ -10,7 +10,7 @@ const (
 	POP
 	SIZE
 	CLEAR
-	ADD
+	// ADD
 )
 
 var options = [OPTINOS_COUNT]string{

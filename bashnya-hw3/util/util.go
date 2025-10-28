@@ -1,6 +1,7 @@
 package util
 
 import (
+	"bashnya-hw3/stack"
 	"errors"
 	"fmt"
 )
@@ -23,4 +24,36 @@ func ChooseOption(choice *int) error {
 	}
 
 	return nil;
+}
+
+func StackPop(s *stack.Stack_int) {
+	elem, got := s.Pop()
+	if (!got) {
+		fmt.Println("Стек пуст")
+		return
+	}
+
+	fmt.Printf("Удаленный элемент: %d\n", elem);
+}
+
+func StackPush(s *stack.Stack_int) error {
+	var n int
+	fmt.Printf("Введите число, которое хотели бы внести в стек: ");
+	_, err := fmt.Scan(n);
+	if (err != nil) {
+		return ErrorInput
+	}
+
+	err = s.Push(n);
+	if (err != nil) {
+		return err
+	}
+
+	return nil;
+}
+
+func StackSize(s *stack.Stack_int) {
+	elems_count, free_cells := s.Size()
+
+	fmt.Printf("Количество элементов: %d\nКоличество свободных ячеек: %d", elems_count, free_cells);
 }

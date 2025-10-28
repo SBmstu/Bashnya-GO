@@ -1,5 +1,7 @@
 package main
 
+// Попробовать с помощью жэнэриков сделать универсальный стек, если так можно
+
 import (
 	"bashnya-hw3/stack"
 	"bashnya-hw3/util"
@@ -34,19 +36,19 @@ func run() error {
 			return nil;
 
 		case util.PUSH:
-
-			return err;
+			err = util.StackPush(&stack)
+			if (err != nil) {
+				return err;
+			}
 
 		case util.POP:
 			return err;
 		case util.SIZE:
-			return err;
 
 		case util.CLEAR:
-			return err;
 
-		case util.ADD:
-			return err
+		// case util.ADD:
+		// 	return err
 		}
 	}
 
