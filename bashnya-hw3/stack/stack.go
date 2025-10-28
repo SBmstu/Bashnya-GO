@@ -14,7 +14,7 @@ type Stack interface {
 	Pop()
 	Push()
 	IsEmpty()
-	Size()
+	Info()
 	Clear()
 }
 
@@ -61,8 +61,20 @@ func (s *Stack_int) IsEmpty() bool {
 	return s.top == 0
 }
 
-func (s *Stack_int) Size() (int, int) {
-	return s.top, s.stack_size
+func (s *Stack_int) Info() {
+	fmt.Printf("Количество элементов в стеке: %d\n", s.top)
+	fmt.Printf("Количество свободных ячеек: %d\n", s.stack_size)
+	
+	if (s.top != 0) {
+		fmt.Printf("Элементы стека: ")
+		for _, elem := range s.stack_array {
+			fmt.Printf("%d ", elem)
+		}
+	} else {
+		fmt.Print("Стек пуст")
+	}
+
+	fmt.Printf("\n\n")
 }
 
 func (s *Stack_int) Clear() {

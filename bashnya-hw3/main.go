@@ -45,7 +45,7 @@ func run() error {
 			util.StackPop(&stack)
 
 		case util.SIZE:
-			util.StackSize(&stack)
+			stack.Info()
 
 		case util.CLEAR:
 			stack.Clear()

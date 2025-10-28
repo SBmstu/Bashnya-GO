@@ -31,7 +31,7 @@ func ChooseOption(choice *int) error {
 func StackPop(s *stack.Stack_int) {
 	elem, not_empty := s.Pop()
 	if (!not_empty) {
-		fmt.Println("Стек пуст")
+		fmt.Printf("Стек пуст\n\n")
 		return
 	}
 
@@ -54,10 +54,4 @@ func StackPush(s *stack.Stack_int) error {
 	fmt.Printf("Элемент успешно добавлен в стек\n\n")
 
 	return nil;
-}
-
-func StackSize(s *stack.Stack_int) {
-	elems_count, free_cells := s.Size()
-
-	fmt.Printf("Количество элементов: %d\nКоличество свободных ячеек: %d", elems_count, free_cells);
 }
