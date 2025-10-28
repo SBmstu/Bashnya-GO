@@ -34,12 +34,12 @@ func (s *Stack_int) Init() {
 
 func (s *Stack_int) Pop() (int, bool) {
 	var index int = s.top;
-	if (index == 1) {
+	if (index == 0) {
 		return -1, false
 	}
 
-	var elem int = s.stack_array[index];
-	s.stack_array = s.stack_array[:index - 1]; // check
+	var elem int = s.stack_array[index - 1];
+	s.stack_array = s.stack_array[:index - 1];
 	s.top--;
 	s.stack_size++;
 
@@ -49,8 +49,8 @@ func (s *Stack_int) Pop() (int, bool) {
 // Правильно ли я понял значение этого метода?
 // Или нужно было через append()?
 func (s *Stack_int) Push(n int) error {
-	// fmt.Println("Элемент успешно добавлен в стек")
-	s.stack_array[s.top] = n;
+	s.stack_array = append(s.stack_array, n)
+
 	s.top++
 	s.stack_size--;
 

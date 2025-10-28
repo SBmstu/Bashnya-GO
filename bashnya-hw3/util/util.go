@@ -23,12 +23,14 @@ func ChooseOption(choice *int) error {
 		return ErrorRange
 	}
 
+	fmt.Println();
+
 	return nil;
 }
 
 func StackPop(s *stack.Stack_int) {
-	elem, got := s.Pop()
-	if (!got) {
+	elem, not_empty := s.Pop()
+	if (!not_empty) {
 		fmt.Println("Стек пуст")
 		return
 	}
@@ -39,7 +41,7 @@ func StackPop(s *stack.Stack_int) {
 func StackPush(s *stack.Stack_int) error {
 	var n int
 	fmt.Printf("Введите число, которое хотели бы внести в стек: ");
-	_, err := fmt.Scan(n);
+	_, err := fmt.Scan(&n);
 	if (err != nil) {
 		return ErrorInput
 	}
@@ -48,6 +50,8 @@ func StackPush(s *stack.Stack_int) error {
 	if (err != nil) {
 		return err
 	}
+
+	fmt.Printf("Элемент успешно добавлен в стек\n\n")
 
 	return nil;
 }

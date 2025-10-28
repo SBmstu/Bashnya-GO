@@ -42,10 +42,13 @@ func run() error {
 			}
 
 		case util.POP:
-			return err;
+			util.StackPop(&stack)
+
 		case util.SIZE:
+			util.StackSize(&stack)
 
 		case util.CLEAR:
+			stack.Clear()
 
 		// case util.ADD:
 		// 	return err
