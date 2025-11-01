@@ -17,17 +17,13 @@ func main() {
 }
 
 func run() error {
-	key, err := utils.ProcessArgs(os.Args);
+	var cfg utils.Config_t;
+	err := cfg.GenConfig();
 	if (err != nil) {
 		return err;
 	}
 
-	switch (key) {
-	case 1:
-		fmt.Println("One");
-	default:
-		fmt.Println("Hz");
-	}
+	cfg.Print();
 
 	return nil;
 }
