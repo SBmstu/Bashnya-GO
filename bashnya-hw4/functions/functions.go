@@ -2,6 +2,17 @@ package functions
 
 import "bashnya-hw4/utils"
 
+func FindAll(data []string) []string {
+	result := make([]string, 0, len(data));
+	res_map := utils.GenMapWithCount(data);
+
+	for key := range res_map {
+		result = append(result, key)
+	}
+
+	return result;
+}
+
 func FindUniq(data []string) []string {
 	result := make([]string, 0, len(data));
 	res_map := utils.GenMapWithCount(data);
