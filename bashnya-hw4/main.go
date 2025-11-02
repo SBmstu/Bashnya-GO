@@ -23,7 +23,5 @@ func run() error {
 		return err;
 	}
 
-	cfg.Print();
-
 	return nil;
 }
