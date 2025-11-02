@@ -1,19 +1,10 @@
 package utils
 
 import (
+	"bufio"
 	"io"
 	"os"
 )
-
-func ProcessFlags(cfg *Config_t) {
-	if (cfg.c) {
-
-	} else if (cfg.d) {
-
-	} else if (cfg.u) {
-
-	}
-}
 
 func GetReader(cfg *Config_t) (io.Reader, error) {
 	if (cfg.inputFile == "") {
@@ -26,4 +17,16 @@ func GetReader(cfg *Config_t) (io.Reader, error) {
 	}
 	
 	return file, nil
+}
+
+func ReadData(reader io.Reader) ([]string, error) {	
+	var data []string;
+
+	scanner := bufio.NewScanner(reader);
+	for scanner.Scan() {
+		line := scanner.Text();
+		data = append(data, line);
+	}
+
+	return data, nil;
 }

@@ -23,5 +23,20 @@ func run() error {
 		return err;
 	}
 
+	reader, err := utils.GetReader(&cfg)
+	if (err != nil) {
+		return err;
+	}
+
+	data, err := utils.ReadData(reader);
+	if (err != nil) {
+		return err;
+	}
+
+	fmt.Printf("Result:\n")
+	for i, s := range data {
+		fmt.Printf("%d: %s\n", i, s)
+	}
+
 	return nil;
 }
