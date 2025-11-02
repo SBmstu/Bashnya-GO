@@ -2,6 +2,7 @@ package utils
 
 import (
 	"bufio"
+	"fmt"
 	"io"
 	"os"
 )
@@ -22,6 +23,7 @@ func GetReader(cfg *Config_t) (io.Reader, error) {
 func ReadData(reader io.Reader) ([]string, error) {	
 	var data []string;
 
+	fmt.Println("Введите строки: ");
 	scanner := bufio.NewScanner(reader);
 	for scanner.Scan() {
 		line := scanner.Text();
