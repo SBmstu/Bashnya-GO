@@ -24,12 +24,16 @@ func run() error {
 		return err;
 	}
 	
-	data, err := utils.ReadData(&cfg); // Почему я не могу здесь обращаться к полям структуры cfg?
+	data_arr, err := utils.ReadData(&cfg); // Почему я не могу здесь обращаться к полям структуры cfg?
 	if (err != nil) {
 		return err;
 	}
 
-	result := functions.FindAll(data, &cfg);
+	var data utils.Data_t;
+	data.Original = data_arr;
+	data.Count = len(data_arr);
+
+	result := functions.FindAll(&data, &cfg);
 	utils.PrintResult(result, &cfg);
 
 	return nil;

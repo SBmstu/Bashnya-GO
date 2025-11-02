@@ -5,9 +5,9 @@ import (
 	"strings"
 )
 
-func FindAll(data []string, cfg *utils.Config_t) []string {
-	result := make([]string, 0, len(data));
-	res_map := utils.GenMapWithCount(data);
+func FindAll(data *utils.Data_t, cfg *utils.Config_t) []string {
+	result := make([]string, 0, data.Count);
+	res_map := utils.GenMapWithCount(data, cfg);
 
 	for key := range res_map {
 		result = append(result, key)
@@ -16,9 +16,9 @@ func FindAll(data []string, cfg *utils.Config_t) []string {
 	return result;
 }
 
-func FindUniq(data []string, cfg *utils.Config_t) []string {
-	result := make([]string, 0, len(data));
-	res_map := utils.GenMapWithCount(data);
+func FindUniq(data *utils.Data_t, cfg *utils.Config_t) []string {
+	result := make([]string, 0, data.Count);
+	res_map := utils.GenMapWithCount(data, cfg);
 
 	for key, value := range res_map {
 		if value == 1 {
@@ -29,9 +29,9 @@ func FindUniq(data []string, cfg *utils.Config_t) []string {
 	return result;
 }
 
-func FindNonuniq(data []string, cfg *utils.Config_t) []string {
-	var result []string;
-	res_map := utils.GenMapWithCount(data);
+func FindNonuniq(data *utils.Data_t, cfg *utils.Config_t) []string {
+	result := make([]string, 0, data.Count);
+	res_map := utils.GenMapWithCount(data, cfg);
 
 	for key, value := range res_map {
 		if value != 1 {
