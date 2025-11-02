@@ -3,28 +3,26 @@ package utils
 import (
 	"bufio"
 	"fmt"
-	"io"
-	"os"
 )
 
-func GetReader(cfg *Config_t) (io.Reader, error) {
-	if (cfg.inputFile == "") {
-		return os.Stdin, nil
-	}
+// func GetReader(cfg *Config_t) (io.Reader, error) {
+// 	if (cfg.inputFile == "") {
+// 		return os.Stdin, nil
+// 	}
 
-	file, err := os.Open(cfg.inputFile)
-	if (err != nil) {
-		return nil, err
-	}
-	
-	return file, nil
-}
+// 	file, err := os.Open(cfg.inputFile)
+// 	if (err != nil) {
+// 		return nil, err
+// 	}
 
-func ReadData(reader io.Reader) ([]string, error) {	
+// 	return file, nil
+// }
+
+func ReadData(cfg *Config_t) ([]string, error) {	
 	var data []string;
 
 	fmt.Println("Введите строки: ");
-	scanner := bufio.NewScanner(reader);
+	scanner := bufio.NewScanner(cfg.inputStream);
 	for scanner.Scan() {
 		line := scanner.Text();
 		data = append(data, line);

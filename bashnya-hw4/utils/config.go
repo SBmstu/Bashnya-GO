@@ -4,6 +4,8 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"io"
+	"os"
 )
 
 var (
@@ -23,8 +25,8 @@ type Config_t struct {
 	i bool 
 	numFields int
 	numChars int
-	inputFile string
-	outputFile string
+	inputStream io.Reader
+	outputStream io.Writer
 }
 
 func (cfg *Config_t) GenConfig() error {
@@ -38,11 +40,30 @@ func (cfg *Config_t) GenConfig() error {
 	flag.Parse();
 
 	args := flag.Args()
-	if (len(args) == 1) {
-		cfg.inputFile = args[0]
-	} else if (len(args) == 2) {
-		cfg.outputFile = args[1]
-	} else if (len(args) > 2) {
+	switch len(args) {
+	case 0:
+		cfg.inputStream = os.Stdin
+		cfg.outputStream = os.Stdout
+	case 1:
+		file, err := os.Open(args[0])
+		if (err != nil) {
+			return err
+		}
+		cfg.inputStream = file;
+		cfg.outputStream = os.Stdout
+	case 2:
+		file_input, err := os.Open(args[0])
+		if (err != nil) {
+			return err
+		}
+		file_output, err := os.Open(args[1])
+		if (err != nil) {
+			return err
+		}
+
+		cfg.inputStream = file_input;
+		cfg.outputStream = file_output;
+	default:
 		return ErrorWrongArgsNumber
 	}
 
@@ -80,5 +101,5 @@ func (cfg *Config_t) Print() {
 	fmt.Println();
 
 	fmt.Printf("numField: %d; numChar: %d\n", cfg.numFields, cfg.numChars);
-	fmt.Printf("inputFile: %s; outputFile: %s\n\n", cfg.inputFile, cfg.outputFile);
+	// fmt.Printf("inputStream: %s; outputStream: %s\n\n", cfg.inputStream, cfg.outputStream); // Подумать, как тут сделать
 }

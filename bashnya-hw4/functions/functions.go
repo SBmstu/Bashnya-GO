@@ -1,8 +1,11 @@
 package functions
 
-import "bashnya-hw4/utils"
+import (
+	"bashnya-hw4/utils"
+	"strings"
+)
 
-func FindAll(data []string) []string {
+func FindAll(data []string, cfg *utils.Config_t) []string {
 	result := make([]string, 0, len(data));
 	res_map := utils.GenMapWithCount(data);
 
@@ -13,7 +16,7 @@ func FindAll(data []string) []string {
 	return result;
 }
 
-func FindUniq(data []string) []string {
+func FindUniq(data []string, cfg *utils.Config_t) []string {
 	result := make([]string, 0, len(data));
 	res_map := utils.GenMapWithCount(data);
 
@@ -26,7 +29,7 @@ func FindUniq(data []string) []string {
 	return result;
 }
 
-func FindNonuniq(data []string) []string {
+func FindNonuniq(data []string, cfg *utils.Config_t) []string {
 	var result []string;
 	res_map := utils.GenMapWithCount(data);
 
@@ -37,4 +40,14 @@ func FindNonuniq(data []string) []string {
 	}
 
 	return result;
+}
+
+func MakeDataLower(data []string) []string {
+	lower_data := make([]string, len(data))
+
+	for i, s := range data {
+		lower_data[i] = strings.ToLower(s);
+	}
+
+	return lower_data;
 }

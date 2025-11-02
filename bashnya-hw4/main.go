@@ -23,19 +23,14 @@ func run() error {
 	if (err != nil) {
 		return err;
 	}
-
-	reader, err := utils.GetReader(&cfg)
+	
+	data, err := utils.ReadData(&cfg); // Почему я не могу здесь обращаться к полям структуры cfg?
 	if (err != nil) {
 		return err;
 	}
 
-	data, err := utils.ReadData(reader);
-	if (err != nil) {
-		return err;
-	}
-
-	result := functions.FindAll(data);
-	utils.PrintResult(result);
+	result := functions.FindAll(data, &cfg);
+	utils.PrintResult(result, &cfg);
 
 	return nil;
 }
