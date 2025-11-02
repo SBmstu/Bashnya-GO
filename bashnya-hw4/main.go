@@ -1,7 +1,7 @@
 package main
 
 import (
-	"bashnya-hw4/functions"
+	"bashnya-hw4/processing"
 	"bashnya-hw4/utils"
 	"fmt"
 	"os"
@@ -33,7 +33,7 @@ func run() error {
 	data.Original = data_arr;
 	data.Count = len(data_arr);
 
-	result := functions.FindAll(&data, &cfg);
+	result := processing.ProcessData(&data, &cfg);
 	utils.PrintResult(result, &cfg);
 
 	return nil;

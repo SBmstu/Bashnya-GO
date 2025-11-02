@@ -20,9 +20,9 @@ func FindUniq(data *utils.Data_t, cfg *utils.Config_t) []string {
 	result := make([]string, 0, data.Count);
 	res_map := utils.GenMapWithCount(data, cfg);
 
-	for key, value := range res_map {
-		if value == 1 {
-			result = append(result, key)
+	for _, value := range res_map {
+		if value.Count == 1 {
+			result = append(result, data.Original[value.I])
 		}
 	}
 
@@ -33,9 +33,9 @@ func FindNonuniq(data *utils.Data_t, cfg *utils.Config_t) []string {
 	result := make([]string, 0, data.Count);
 	res_map := utils.GenMapWithCount(data, cfg);
 
-	for key, value := range res_map {
-		if value != 1 {
-			result = append(result, key)
+	for _, value := range res_map {
+		if value.Count != 1 {
+			result = append(result, data.Original[value.I])
 		}
 	}
 
