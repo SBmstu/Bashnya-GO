@@ -34,7 +34,7 @@ func run() error {
 		return err;
 	}
 
-	result := functions.FindUniq(data);
+	result := functions.FindNonuniq(data);
 	utils.PrintResult(result);
 
 	return nil;

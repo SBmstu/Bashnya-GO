@@ -32,3 +32,13 @@ func ReadData(reader io.Reader) ([]string, error) {
 
 	return data, nil;
 }
+
+func GenMapWithCount(data []string) map[string]int {
+	res := make(map[string]int);
+
+	for _, s := range data {
+		res[s]++;
+	}
+
+	return res;
+}
