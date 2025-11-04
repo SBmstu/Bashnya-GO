@@ -8,6 +8,7 @@ import (
 )
 
 // есть момент, что выводится не в порядке ввода
+// + в output пустая строка заносится
 
 func main() {
 	err := run();
@@ -29,14 +30,18 @@ func run() error {
 	data_arr, err := utils.ReadData(&cfg);
 	if (err != nil) {
 		return err;
-	}
+	} // а что делать если в InputStream файл? Как закрывать то? Тот же самый вопрос и с OutputStream
 
 	var data utils.Data_t;
 	data.Original = data_arr;
 	data.Count = len(data_arr);
 
 	result := processing.ProcessData(&data, &cfg);
-	utils.PrintResult(result, &cfg);
+	
+	err = utils.PrintResult(result, &cfg);
+	if (err != nil) {
+		return err;
+	}
 
 	return nil;
 }

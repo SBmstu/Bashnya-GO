@@ -1,14 +1,30 @@
 package utils
 
 import (
-	"fmt"
+	"bufio"
+	"errors"
 )
 
-func PrintResult(arr []string, cfg *Config_t) {
-	// writer := bufio.NewWriter(cfg.OutputStream);
+var (
+	ErrorBufferFlush error = errors.New("ошибка сброса буфера")
+	ErrorStreamWrite error = errors.New("ошибка записи в поток")
+)
+
+func PrintResult(arr []string, cfg *Config_t) error {
+	writer := bufio.NewWriter(cfg.OutputStream);
 	
-	fmt.Println("Результат: ");
+	// fmt.Println("Результат: ");
 	for _, s := range arr {
-		fmt.Printf("%s\n", s);
+		_, err := writer.WriteString(s + "\n");
+		if (err != nil) {
+			return ErrorStreamWrite;
+		}
 	}
+
+	err := writer.Flush();
+    if err != nil {
+        return ErrorBufferFlush;
+    }
+
+	return nil;
 }

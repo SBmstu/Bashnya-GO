@@ -56,7 +56,7 @@ func (cfg *Config_t) GenConfig() error {
 		if (err != nil) {
 			return err
 		}
-		file_output, err := os.Open(args[1])
+		file_output, err := os.Create(args[1])
 		if (err != nil) {
 			return err
 		}
