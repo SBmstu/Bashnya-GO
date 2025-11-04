@@ -1,11 +1,14 @@
 package utils
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func PrintResult(arr []string, cfg *Config_t) {
-	// writer := 
+	// writer := bufio.NewWriter(cfg.OutputStream);
+	
 	fmt.Println("Результат: ");
-	for i, s := range arr {
-		fmt.Printf("%d: %s\n", i, s);
+	for _, s := range arr {
+		fmt.Printf("%s\n", s);
 	}
 }

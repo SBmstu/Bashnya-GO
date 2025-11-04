@@ -7,7 +7,7 @@ import (
 
 func ProcessData(data *utils.Data_t, cfg *utils.Config_t) []string {
 	if cfg.C {
-		// return functions.
+		return functions.CountAll(data, cfg);
 	}
 	if cfg.D {
 		return functions.FindNonuniq(data, cfg);

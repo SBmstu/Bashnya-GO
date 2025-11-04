@@ -7,6 +7,8 @@ import (
 	"os"
 )
 
+// есть момент, что выводится не в порядке ввода
+
 func main() {
 	err := run();
 	if (err != nil) {
@@ -23,8 +25,8 @@ func run() error {
 	if (err != nil) {
 		return err;
 	}
-	
-	data_arr, err := utils.ReadData(&cfg); // Почему я не могу здесь обращаться к полям структуры cfg?
+
+	data_arr, err := utils.ReadData(&cfg);
 	if (err != nil) {
 		return err;
 	}
